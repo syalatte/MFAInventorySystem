@@ -11,7 +11,8 @@ namespace MFAInventorySystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tb_vendingmachine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,18 @@ namespace MFAInventorySystem.Models
         {
             this.tb_stockhistory = new HashSet<tb_stockhistory>();
         }
-    
+
+
+        [DisplayName("Vending ID")]
         public int v_id { get; set; }
+
+        [DisplayName("Location")]
         public string v_location { get; set; }
+
+        [DisplayName("Cash In Slot")]
         public Nullable<double> v_cashInSlot { get; set; }
+
+        [DisplayName("Profits")]
         public Nullable<double> v_profit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

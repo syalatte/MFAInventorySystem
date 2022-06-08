@@ -1,0 +1,49 @@
+﻿@model MFAInventorySystem.Models.tb_vendingmachine
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">Details Vending Machine</h4>
+    </div>
+    <div class="card-body">
+        <div>
+
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.v_location)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.v_location)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.v_cashInSlot)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.v_cashInSlot)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.v_profit)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.v_profit)
+                </dd>
+
+            </dl>
+        </div>
+        </div>
+    </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.v_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

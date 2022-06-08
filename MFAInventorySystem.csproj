@@ -136,6 +136,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VendingMachineController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +183,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\LoginStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -236,6 +238,7 @@
     <Content Include="Template\js\demo\datatables-demo.js" />
     <Content Include="Template\js\sb-admin-2.js" />
     <Content Include="Template\js\sb-admin-2.min.js" />
+    <Content Include="Template\js\table.js" />
     <Content Include="Template\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Template\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Template\vendor\bootstrap\js\bootstrap.js" />
@@ -2106,6 +2109,11 @@
     <Content Include="Views\Report\Edit.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Report\GetAll.cshtml" />
+    <Content Include="Views\VendingMachine\Create.cshtml" />
+    <Content Include="Views\VendingMachine\Delete.cshtml" />
+    <Content Include="Views\VendingMachine\Details.cshtml" />
+    <Content Include="Views\VendingMachine\Edit.cshtml" />
+    <Content Include="Views\VendingMachine\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

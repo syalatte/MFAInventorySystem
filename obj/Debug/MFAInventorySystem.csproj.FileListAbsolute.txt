@@ -165,3 +165,4 @@ C:\Users\Mira\Documents\GitHub\MFAInventorySystem\obj\Debug\MFAInventorySystem.c
 C:\Users\Mira\Documents\GitHub\MFAInventorySystem\obj\Debug\MFAInventorySystem.dll
 C:\Users\Mira\Documents\GitHub\MFAInventorySystem\obj\Debug\MFAInventorySystem.pdb
 C:\Users\Mira\Documents\GitHub\MFAInventorySystem\bin\Rotativa.dll
+C:\Users\Syakila\Desktop\wbl\MFAInventorySystem\bin\Rotativa.dll

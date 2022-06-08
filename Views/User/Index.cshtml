@@ -13,54 +13,95 @@
 
 </head>
 <body>
-    <h2> Manage User </h2>
+
     <br />
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <div class="table-responsive">
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.u_name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.u_contact)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.u_email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tb_usertype.ut_desc)
-                </th>
-                <th></th>
-            </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.u_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.u_contact)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.u_email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tb_usertype.ut_desc)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.u_id }, new { @class = "btn btn-dark" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.u_id }, new { @class = "btn btn-secondary" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.u_id }, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-            }
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">Manage User</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    
+                        @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-outline-dark" })
+                        
+                    <hr />
+                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.u_name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.u_contact)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.u_email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tb_usertype.ut_desc)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
 
-        </table>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.u_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.u_contact)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.u_email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tb_usertype.ut_desc)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.u_id }, new { @class = "btn btn-dark btnStyle" }) 
+                                        @Html.ActionLink("Details", "Details", new { id = item.u_id }, new { @class = "btn btn-secondary btnStyle" }) 
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.u_id }, new { @class = "btn btn-danger btnStyle" })
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Template/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Template/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Template/js/sb-admin-2.min.js"></script>
+
+    <!-- Custom scripts for table-->
+    <script src="~/Template/js/table.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/Template/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Template/js/demo/datatables-demo.js"></script>
 </body>
 </html>
