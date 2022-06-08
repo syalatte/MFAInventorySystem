@@ -1,0 +1,65 @@
+﻿@model MFAInventorySystem.Models.tb_report
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tb_report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.r_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_profits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_profits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_capitals)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_capitals)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

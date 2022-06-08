@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MFAInventorySystem.Models.tb_report>
+
+@{
+    ViewBag.Title = "Report List";
+    Layout = null;
+}
+
+<h2>Report List</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.r_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_profits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_capitals)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_profits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_capitals)
+            </td>
+
+        </tr>
+    }
+
+</table>

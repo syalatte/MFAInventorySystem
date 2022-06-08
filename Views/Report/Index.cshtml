@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MFAInventorySystem.Models.tb_report>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>List of Reports</h3>
+<p>
+    @Html.ActionLink("Create", "Create")
+    @Html.ActionLink("Print", "Print")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.r_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_profits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_capitals)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_profits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.r_capitals)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.r_id }, new { @class = "btn btn-dark" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.r_id }, new { @class = "btn btn-secondary" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.r_id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
