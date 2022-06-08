@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_mfaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tb_report">
+    <Key>
+      <PropertyRef Name="r_id" />
+    </Key>
+    <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="r_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="r_desc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="r_date" Type="DateTime" Precision="0" />
+    <Property Name="r_profits" Type="Double" />
+    <Property Name="r_capitals" Type="Double" />
+  </EntityType>
+  <EntityType Name="tb_stock">
+    <Key>
+      <PropertyRef Name="s_id" />
+    </Key>
+    <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="s_product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="s_qty" Type="Int32" />
+    <Property Name="s_modal" Type="Double" />
+    <Property Name="s_hargaJualan" Type="Double" />
+    <Property Name="s_untungBersihPerTin" Type="Double" />
+    <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_stock" FromRole="tb_stock" ToRole="tb_stockhistory" />
+  </EntityType>
+  <EntityType Name="tb_stockhistory">
+    <Key>
+      <PropertyRef Name="sh_id" />
+    </Key>
+    <Property Name="sh_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sh_sid" Type="Int32" />
+    <Property Name="sh_qtySlot" Type="Int32" />
+    <Property Name="sh_vmID" Type="Int32" />
+    <Property Name="sh_untungBersih" Type="Double" />
+    <Property Name="sh_date" Type="DateTime" Precision="0" />
+    <Property Name="sh_uid" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sh_qtySold" Type="Int32" />
+    <NavigationProperty Name="tb_stock" Relationship="Self.FK_tb_stockhistory_tb_stock" FromRole="tb_stockhistory" ToRole="tb_stock" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_stockhistory_tb_user" FromRole="tb_stockhistory" ToRole="tb_user" />
+    <NavigationProperty Name="tb_vendingmachine" Relationship="Self.FK_tb_stockhistory_tb_vendingmachine" FromRole="tb_stockhistory" ToRole="tb_vendingmachine" />
+  </EntityType>
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="u_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_contact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="u_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_pw" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_type" Type="Int32" />
+    <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_user" FromRole="tb_user" ToRole="tb_stockhistory" />
+    <NavigationProperty Name="tb_usertype" Relationship="Self.FK_tb_user_tb_usertype" FromRole="tb_user" ToRole="tb_usertype" />
+  </EntityType>
+  <EntityType Name="tb_usertype">
+    <Key>
+      <PropertyRef Name="ut_id" />
+    </Key>
+    <Property Name="ut_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ut_desc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_user_tb_usertype" FromRole="tb_usertype" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_vendingmachine">
+    <Key>
+      <PropertyRef Name="v_id" />
+    </Key>
+    <Property Name="v_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="v_location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="v_cashInSlot" Type="Double" />
+    <Property Name="v_profit" Type="Double" />
+    <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_vendingmachine" FromRole="tb_vendingmachine" ToRole="tb_stockhistory" />
+  </EntityType>
+  <Association Name="FK_tb_stockhistory_tb_stock">
+    <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
+    <End Role="tb_stockhistory" Type="Self.tb_stockhistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_stock">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="tb_stockhistory">
+        <PropertyRef Name="sh_sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_stockhistory_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+    <End Role="tb_stockhistory" Type="Self.tb_stockhistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="tb_stockhistory">
+        <PropertyRef Name="sh_uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_stockhistory_tb_vendingmachine">
+    <End Role="tb_vendingmachine" Type="Self.tb_vendingmachine" Multiplicity="0..1" />
+    <End Role="tb_stockhistory" Type="Self.tb_stockhistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_vendingmachine">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="tb_stockhistory">
+        <PropertyRef Name="sh_vmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_user_tb_usertype">
+    <End Role="tb_usertype" Type="Self.tb_usertype" Multiplicity="0..1" />
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_usertype">
+        <PropertyRef Name="ut_id" />
+      </Principal>
+      <Dependent Role="tb_user">
+        <PropertyRef Name="u_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_mfaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tb_report" EntityType="Self.tb_report" />
+    <EntitySet Name="tb_stock" EntityType="Self.tb_stock" />
+    <EntitySet Name="tb_stockhistory" EntityType="Self.tb_stockhistory" />
+    <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+    <EntitySet Name="tb_usertype" EntityType="Self.tb_usertype" />
+    <EntitySet Name="tb_vendingmachine" EntityType="Self.tb_vendingmachine" />
+    <AssociationSet Name="FK_tb_stockhistory_tb_stock" Association="Self.FK_tb_stockhistory_tb_stock">
+      <End Role="tb_stock" EntitySet="tb_stock" />
+      <End Role="tb_stockhistory" EntitySet="tb_stockhistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_stockhistory_tb_user" Association="Self.FK_tb_stockhistory_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_stockhistory" EntitySet="tb_stockhistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_stockhistory_tb_vendingmachine" Association="Self.FK_tb_stockhistory_tb_vendingmachine">
+      <End Role="tb_vendingmachine" EntitySet="tb_vendingmachine" />
+      <End Role="tb_stockhistory" EntitySet="tb_stockhistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_user_tb_usertype" Association="Self.FK_tb_user_tb_usertype">
+      <End Role="tb_usertype" EntitySet="tb_usertype" />
+      <End Role="tb_user" EntitySet="tb_user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

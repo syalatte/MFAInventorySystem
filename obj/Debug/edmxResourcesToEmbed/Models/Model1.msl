@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_mfaModelStoreContainer" CdmEntityContainer="db_mfaEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="db_mfaModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_report">
+      <EntityTypeMapping TypeName="db_mfaModel.tb_report">
+        <MappingFragment StoreEntitySet="tb_report">
+          <ScalarProperty Name="r_id" ColumnName="r_id" />
+          <ScalarProperty Name="r_name" ColumnName="r_name" />
+          <ScalarProperty Name="r_desc" ColumnName="r_desc" />
+          <ScalarProperty Name="r_date" ColumnName="r_date" />
+          <ScalarProperty Name="r_profits" ColumnName="r_profits" />
+          <ScalarProperty Name="r_capitals" ColumnName="r_capitals" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_stock">
+      <EntityTypeMapping TypeName="db_mfaModel.tb_stock">
+        <MappingFragment StoreEntitySet="tb_stock">
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="s_product" ColumnName="s_product" />
+          <ScalarProperty Name="s_qty" ColumnName="s_qty" />
+          <ScalarProperty Name="s_modal" ColumnName="s_modal" />
+          <ScalarProperty Name="s_hargaJualan" ColumnName="s_hargaJualan" />
+          <ScalarProperty Name="s_untungBersihPerTin" ColumnName="s_untungBersihPerTin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_stockhistory">
+      <EntityTypeMapping TypeName="db_mfaModel.tb_stockhistory">
+        <MappingFragment StoreEntitySet="tb_stockhistory">
+          <ScalarProperty Name="sh_id" ColumnName="sh_id" />
+          <ScalarProperty Name="sh_sid" ColumnName="sh_sid" />
+          <ScalarProperty Name="sh_qtySlot" ColumnName="sh_qtySlot" />
+          <ScalarProperty Name="sh_vmID" ColumnName="sh_vmID" />
+          <ScalarProperty Name="sh_untungBersih" ColumnName="sh_untungBersih" />
+          <ScalarProperty Name="sh_date" ColumnName="sh_date" />
+          <ScalarProperty Name="sh_uid" ColumnName="sh_uid" />
+          <ScalarProperty Name="sh_qtySold" ColumnName="sh_qtySold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_user">
+      <EntityTypeMapping TypeName="db_mfaModel.tb_user">
+        <MappingFragment StoreEntitySet="tb_user">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_contact" ColumnName="u_contact" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_pw" ColumnName="u_pw" />
+          <ScalarProperty Name="u_type" ColumnName="u_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_usertype">
+      <EntityTypeMapping TypeName="db_mfaModel.tb_usertype">
+        <MappingFragment StoreEntitySet="tb_usertype">
+          <ScalarProperty Name="ut_id" ColumnName="ut_id" />
+          <ScalarProperty Name="ut_desc" ColumnName="ut_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_vendingmachine">
+      <EntityTypeMapping TypeName="db_mfaModel.tb_vendingmachine">
+        <MappingFragment StoreEntitySet="tb_vendingmachine">
+          <ScalarProperty Name="v_id" ColumnName="v_id" />
+          <ScalarProperty Name="v_location" ColumnName="v_location" />
+          <ScalarProperty Name="v_cashInSlot" ColumnName="v_cashInSlot" />
+          <ScalarProperty Name="v_profit" ColumnName="v_profit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

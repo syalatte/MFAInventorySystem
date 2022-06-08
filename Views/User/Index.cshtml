@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MFAInventorySystem.Models.tb_user>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+<body>
+    <h2> Manage User </h2>
+    <br />
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.u_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.u_contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.u_email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tb_usertype.ut_desc)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.u_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.u_contact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.u_email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_usertype.ut_desc)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.u_id }, new { @class = "btn btn-dark" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.u_id }, new { @class = "btn btn-secondary" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.u_id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+</body>
+</html>

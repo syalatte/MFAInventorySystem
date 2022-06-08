@@ -1,0 +1,61 @@
+﻿@model MFAInventorySystem.Models.tb_user
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            MFA Inventory System
+            <br />
+            <br />
+        </div>
+        <div id="login-div">
+            @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+            {
+                <form class="p-3 mt-3">
+
+                    <div class="form-field d-flex align-items-center">
+                        <span class="far fa-user"></span>
+
+                        @Html.LabelFor(model => model.u_id)
+                        @Html.EditorFor(model => model.u_id)
+                        @Html.ValidationMessageFor(model => model.u_id)
+
+                    </div>
+
+                    <div class="form-field d-flex align-items-center">
+                        <span class="fas fa-key"></span>
+
+                        @Html.LabelFor(model => model.u_pw)
+                        @Html.EditorFor(model => model.u_pw)
+                        @Html.ValidationMessageFor(model => model.u_pw)
+                    </div>
+
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+
+                    <button type="submit" class="btn mt-3" name="name" value="Login">
+                        Login
+                    </button>
+
+                    <button type="reset" class="btn mt-3" name="name" value="Clear">
+                        Reset
+                    </button>
+
+                </form>
+                <div class="text-center fs-6">
+                    <a href="#">Forget password?</a>
+                </div>
+            }
+        </div>
+    </div>
+    <link href="~/Content/LoginStyle.css" rel="stylesheet" />
+</body>
+
+</html>
