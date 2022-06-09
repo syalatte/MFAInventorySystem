@@ -29,6 +29,9 @@ namespace MFAInventorySystem.Controllers
                 else
                 {
                     Session["uid"] = userDetails.u_id;
+                    
+                    
+
                     if (userDetails.u_type == 1)
                     {
                         Session["uid"] = userDetails.u_id;
@@ -51,7 +54,6 @@ namespace MFAInventorySystem.Controllers
             }
 
         }
-
 
         public ActionResult Logout()
         {

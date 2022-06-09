@@ -185,6 +185,8 @@ namespace MFAInventorySystem.Controllers
             ViewBag.u_type = new SelectList(db.tb_usertype, "ut_id", "ut_desc", tb_user.u_type);
             return View(tb_user);
         }
+
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
