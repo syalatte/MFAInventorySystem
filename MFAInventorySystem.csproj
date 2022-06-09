@@ -2115,6 +2115,7 @@
     <Content Include="Views\VendingMachine\Edit.cshtml" />
     <Content Include="Views\VendingMachine\Index.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\Report\GetOne.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

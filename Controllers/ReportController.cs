@@ -119,9 +119,21 @@ namespace MFAInventorySystem.Controllers
             return View(report);
         }
 
-        public ActionResult Print()
+        public ActionResult PrintAll()
         {
             var q = new ActionAsPdf("GetAll");
+            return q;
+        }
+
+        public ActionResult GetOne(int? id)
+        {
+            var report = (from tb_report in db.tb_report where tb_report.r_id == id select tb_report).ToList();
+            return View(report);
+        }
+
+        public ActionResult PrintOne(int? id)
+        {
+            var q = new ActionAsPdf("GetOne");
             return q;
         }
 

@@ -1,21 +1,17 @@
 ﻿@model IEnumerable<MFAInventorySystem.Models.tb_report>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Report Details";
+    Layout = null;
 }
 
+<h2>Report Details</h2>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h4 class="m-0 font-weight-bold text-primary">List of Reports</h4>
-    <hr />
-        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-outline-dark" })
-        @Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-dark" })
+        <h4 class="m-0 font-weight-bold text-primary">Details Report</h4>
     </div>
-        
-    
     <div class="card-body">
         <div>
             <div>
@@ -63,11 +59,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.r_capitals)
                             </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.r_id }, new { @class = "btn btn-dark" }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.r_id }, new { @class = "btn btn-secondary" }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.r_id }, new { @class = "btn btn-danger" })
-                            </td>
+
                         </tr>
                     }
 

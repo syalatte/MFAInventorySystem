@@ -10,6 +10,8 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h4 class="m-0 font-weight-bold text-primary">Details Report</h4>
+        <hr />
+        @Html.ActionLink("Print", "PrintOne", new { id = Model.r_id }, new { @class = "btn btn-outline-dark" })
     </div>
     <div class="card-body">
         <div>
@@ -60,6 +62,6 @@
             </div>
             </div></div></div>
             <p>
-                @Html.ActionLink("Edit Description", "Edit", new { id = Model.r_id }) |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Edit Description", "Edit", new { id = Model.r_id }, new { @class = "btn btn-outline-dark" }) |
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark" })
             </p>
