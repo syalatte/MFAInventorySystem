@@ -35,6 +35,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.u_id)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.u_name)
                                 </th>
                                 <th>
@@ -53,25 +56,28 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.u_name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.u_contact)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.u_email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tb_usertype.ut_desc)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.u_id }, new { @class = "btn btn-dark btnStyle" }) 
-                                        @Html.ActionLink("Details", "Details", new { id = item.u_id }, new { @class = "btn btn-secondary btnStyle" }) 
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.u_id }, new { @class = "btn btn-danger btnStyle" })
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.u_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.u_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.u_contact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.u_email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_usertype.ut_desc)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.u_id }, new { @class = "btn btn-dark btnStyle" })
+                                    @Html.ActionLink("Details", "Details", new { id = item.u_id }, new { @class = "btn btn-secondary btnStyle" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.u_id }, new { @class = "btn btn-danger btnStyle" })
+                                </td>
+                            </tr>
 
                             }
                         </tbody>
