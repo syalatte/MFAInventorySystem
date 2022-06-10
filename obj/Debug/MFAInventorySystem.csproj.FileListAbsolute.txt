@@ -166,3 +166,5 @@ C:\Users\Mira\Documents\GitHub\MFAInventorySystem\obj\Debug\MFAInventorySystem.d
 C:\Users\Mira\Documents\GitHub\MFAInventorySystem\obj\Debug\MFAInventorySystem.pdb
 C:\Users\Mira\Documents\GitHub\MFAInventorySystem\bin\Rotativa.dll
 C:\Users\Syakila\Desktop\wbl\MFAInventorySystem\bin\Rotativa.dll
+C:\Users\Syakila\Desktop\wbl\MFAInventorySystem\bin\System.Web.Helpers.Crypto.dll
+C:\Users\Syakila\Desktop\wbl\MFAInventorySystem\bin\System.Web.Helpers.Crypto.pdb

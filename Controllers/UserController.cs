@@ -10,12 +10,13 @@ using MFAInventorySystem.Models;
 
 namespace MFAInventorySystem.Controllers
 {
+
     public class UserController : Controller
     {
         private db_mfaEntities db = new db_mfaEntities();
 
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index() 
         {
             var tb_user = db.tb_user.Include(t => t.tb_usertype);
             return View(tb_user.ToList());
@@ -178,6 +179,7 @@ namespace MFAInventorySystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ChangePassword");
@@ -186,7 +188,7 @@ namespace MFAInventorySystem.Controllers
             return View(tb_user);
         }
 
-       
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -195,5 +197,7 @@ namespace MFAInventorySystem.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

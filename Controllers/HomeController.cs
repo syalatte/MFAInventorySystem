@@ -22,11 +22,13 @@ namespace MFAInventorySystem.Controllers
                 var numVM = db.tb_vendingmachine.Count();
                 var numStock = db.tb_stock.Count();
                 
+                
 
                 ViewBag.numEmployer = numEmployer;
                 ViewBag.numEmployee = numEmployee;
                 ViewBag.numVM = numVM;
                 ViewBag.numStock = numStock;
+                
 
                 return View();
             }
