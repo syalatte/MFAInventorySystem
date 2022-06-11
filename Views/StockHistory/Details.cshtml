@@ -1,0 +1,75 @@
+﻿@model MFAInventorySystem.Models.tb_stockhistory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_stockhistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sh_qtySlot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sh_qtySlot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sh_untungBersih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sh_untungBersih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sh_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sh_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sh_qtySold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sh_qtySold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_stock.s_product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_stock.s_product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_user.u_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_user.u_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_vendingmachine.v_location)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.sh_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

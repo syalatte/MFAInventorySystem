@@ -138,6 +138,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\StockHistoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendingMachineController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2120,6 +2122,16 @@
     <Content Include="Views\VendingMachine\Index.cshtml" />
     <Content Include="Views\Report\GetOne.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\StockHistory\Create.cshtml" />
+    <Content Include="Views\StockHistory\Delete.cshtml" />
+    <Content Include="Views\StockHistory\Details.cshtml" />
+    <Content Include="Views\StockHistory\Edit.cshtml" />
+    <Content Include="Views\StockHistory\Index.cshtml" />
+    <Content Include="Views\Stock\Create.cshtml" />
+    <Content Include="Views\Stock\Delete.cshtml" />
+    <Content Include="Views\Stock\Details.cshtml" />
+    <Content Include="Views\Stock\Edit.cshtml" />
+    <Content Include="Views\Stock\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
