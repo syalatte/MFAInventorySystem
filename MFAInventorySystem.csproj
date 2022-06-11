@@ -161,6 +161,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReportValidation.cs" />
+    <Compile Include="Models\StockhistoryValidation.cs" />
+    <Compile Include="Models\StockValidation.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -182,7 +185,9 @@
     <Compile Include="Models\tb_vendingmachine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UsertypeValidation.cs" />
+    <Compile Include="Models\UserValidation.cs" />
+    <Compile Include="Models\VendingMachineValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

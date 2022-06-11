@@ -5,66 +5,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.sh_qtySlot)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sh_untungBersih)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sh_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sh_qtySold)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tb_stock.s_product)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tb_user.u_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
-        </th>
-        <th></th>
-    </tr>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.sh_qtySlot)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sh_untungBersih)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sh_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sh_qtySold)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tb_stock.s_product)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tb_user.u_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tb_vendingmachine.v_location)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.sh_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.sh_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.sh_id })
-        </td>
-    </tr>
-}
+    <!-- Page Heading -->
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Manage Stocks History</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <p>
+                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sh_qtySlot)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sh_untungBersih)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sh_date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sh_qtySold)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tb_stock.s_product)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tb_user.u_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
+                        </th>
+                        <th></th>
+                    </tr>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sh_qtySlot)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sh_untungBersih)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sh_date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sh_qtySold)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_stock.s_product)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_user.u_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_vendingmachine.v_location)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.sh_id }) 
+                                @Html.ActionLink("Details", "Details", new { id = item.sh_id }) 
+                                @Html.ActionLink("Delete", "Delete", new { id = item.sh_id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                </div></div></div></div>
