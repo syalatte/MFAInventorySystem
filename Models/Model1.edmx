@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_mfaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db_mfaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -25,6 +25,8 @@
           <Property Name="r_date" Type="date" />
           <Property Name="r_profits" Type="float" />
           <Property Name="r_capitals" Type="float" />
+          <Property Name="r_vmID" Type="int" />
+          <Property Name="r_sid" Type="int" />
         </EntityType>
         <EntityType Name="tb_stock">
           <Key>
@@ -58,7 +60,7 @@
           <Property Name="u_name" Type="varchar" MaxLength="50" />
           <Property Name="u_contact" Type="varchar" MaxLength="15" />
           <Property Name="u_email" Type="varchar" MaxLength="50" />
-          <Property Name="u_pw" Type="varchar" MaxLength="50" />
+          <Property Name="u_pw" Type="nvarchar(max)" />
           <Property Name="u_type" Type="int" />
         </EntityType>
         <EntityType Name="tb_usertype">
@@ -77,6 +79,30 @@
           <Property Name="v_cashInSlot" Type="float" />
           <Property Name="v_profit" Type="float" />
         </EntityType>
+        <Association Name="FK_tb_report_tb_stock">
+          <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
+          <End Role="tb_report" Type="Self.tb_report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_stock">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="tb_report">
+              <PropertyRef Name="r_sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_report_tb_vendingmachine">
+          <End Role="tb_vendingmachine" Type="Self.tb_vendingmachine" Multiplicity="0..1" />
+          <End Role="tb_report" Type="Self.tb_report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vendingmachine">
+              <PropertyRef Name="v_id" />
+            </Principal>
+            <Dependent Role="tb_report">
+              <PropertyRef Name="r_vmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_stockhistory_tb_stock">
           <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
           <End Role="tb_stockhistory" Type="Self.tb_stockhistory" Multiplicity="*" />
@@ -133,6 +159,14 @@
           <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_usertype" EntityType="Self.tb_usertype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_vendingmachine" EntityType="Self.tb_vendingmachine" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_report_tb_stock" Association="Self.FK_tb_report_tb_stock">
+            <End Role="tb_stock" EntitySet="tb_stock" />
+            <End Role="tb_report" EntitySet="tb_report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_report_tb_vendingmachine" Association="Self.FK_tb_report_tb_vendingmachine">
+            <End Role="tb_vendingmachine" EntitySet="tb_vendingmachine" />
+            <End Role="tb_report" EntitySet="tb_report" />
+          </AssociationSet>
           <AssociationSet Name="FK_tb_stockhistory_tb_stock" Association="Self.FK_tb_stockhistory_tb_stock">
             <End Role="tb_stock" EntitySet="tb_stock" />
             <End Role="tb_stockhistory" EntitySet="tb_stockhistory" />
@@ -150,8 +184,7 @@
             <End Role="tb_user" EntitySet="tb_user" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_mfaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -175,6 +208,10 @@
           <Property Name="r_date" Type="DateTime" Precision="0" />
           <Property Name="r_profits" Type="Double" />
           <Property Name="r_capitals" Type="Double" />
+          <Property Name="r_vmID" Type="Int32" />
+          <NavigationProperty Name="tb_vendingmachine" Relationship="db_mfaModel.FK_tb_report_tb_vendingmachine" FromRole="tb_report" ToRole="tb_vendingmachine" />
+          <Property Name="r_sid" Type="Int32" />
+          <NavigationProperty Name="tb_stock" Relationship="db_mfaModel.FK_tb_report_tb_stock" FromRole="tb_report" ToRole="tb_stock" />
         </EntityType>
         <EntityType Name="tb_stock">
           <Key>
@@ -187,6 +224,7 @@
           <Property Name="s_hargaJualan" Type="Double" />
           <Property Name="s_untungBersihPerTin" Type="Double" />
           <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_stock" FromRole="tb_stock" ToRole="tb_stockhistory" />
+          <NavigationProperty Name="tb_report" Relationship="db_mfaModel.FK_tb_report_tb_stock" FromRole="tb_stock" ToRole="tb_report" />
         </EntityType>
         <EntityType Name="tb_stockhistory">
           <Key>
@@ -212,7 +250,7 @@
           <Property Name="u_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="u_contact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="u_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="u_pw" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="u_pw" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="u_type" Type="Int32" />
           <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_user" FromRole="tb_user" ToRole="tb_stockhistory" />
           <NavigationProperty Name="tb_usertype" Relationship="Self.FK_tb_user_tb_usertype" FromRole="tb_user" ToRole="tb_usertype" />
@@ -234,6 +272,7 @@
           <Property Name="v_cashInSlot" Type="Double" />
           <Property Name="v_profit" Type="Double" />
           <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_vendingmachine" FromRole="tb_vendingmachine" ToRole="tb_stockhistory" />
+          <NavigationProperty Name="tb_report" Relationship="db_mfaModel.FK_tb_report_tb_vendingmachine" FromRole="tb_vendingmachine" ToRole="tb_report" />
         </EntityType>
         <Association Name="FK_tb_stockhistory_tb_stock">
           <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
@@ -307,7 +346,39 @@
             <End Role="tb_usertype" EntitySet="tb_usertype" />
             <End Role="tb_user" EntitySet="tb_user" />
           </AssociationSet>
+          <AssociationSet Name="FK_tb_report_tb_vendingmachine" Association="db_mfaModel.FK_tb_report_tb_vendingmachine">
+            <End Role="tb_vendingmachine" EntitySet="tb_vendingmachine" />
+            <End Role="tb_report" EntitySet="tb_report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_report_tb_stock" Association="db_mfaModel.FK_tb_report_tb_stock">
+            <End Role="tb_stock" EntitySet="tb_stock" />
+            <End Role="tb_report" EntitySet="tb_report" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_tb_report_tb_vendingmachine">
+          <End Type="db_mfaModel.tb_vendingmachine" Role="tb_vendingmachine" Multiplicity="0..1" />
+          <End Type="db_mfaModel.tb_report" Role="tb_report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vendingmachine">
+              <PropertyRef Name="v_id" />
+            </Principal>
+            <Dependent Role="tb_report">
+              <PropertyRef Name="r_vmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_report_tb_stock">
+          <End Type="db_mfaModel.tb_stock" Role="tb_stock" Multiplicity="0..1" />
+          <End Type="db_mfaModel.tb_report" Role="tb_report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_stock">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="tb_report">
+              <PropertyRef Name="r_sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -328,6 +399,8 @@
           <EntitySetMapping Name="tb_report">
             <EntityTypeMapping TypeName="db_mfaModel.tb_report">
               <MappingFragment StoreEntitySet="tb_report">
+                <ScalarProperty Name="r_sid" ColumnName="r_sid" />
+                <ScalarProperty Name="r_vmID" ColumnName="r_vmID" />
                 <ScalarProperty Name="r_id" ColumnName="r_id" />
                 <ScalarProperty Name="r_name" ColumnName="r_name" />
                 <ScalarProperty Name="r_desc" ColumnName="r_desc" />

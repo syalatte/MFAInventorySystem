@@ -16,6 +16,8 @@
         <AssociationConnector Association="db_mfaModel.FK_tb_stockhistory_tb_user" ManuallyRouted="false" />
         <AssociationConnector Association="db_mfaModel.FK_tb_stockhistory_tb_vendingmachine" ManuallyRouted="false" />
         <AssociationConnector Association="db_mfaModel.FK_tb_user_tb_usertype" ManuallyRouted="false" />
+        <AssociationConnector Association="db_mfaModel.FK_tb_report_tb_vendingmachine" />
+        <AssociationConnector Association="db_mfaModel.FK_tb_report_tb_stock" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

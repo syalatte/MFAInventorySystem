@@ -2114,18 +2114,11 @@
     <Content Include="Template\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Template\vendor\jquery\jquery.min.map" />
     <Content Include="Template\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Report\Create.cshtml" />
-    <Content Include="Views\Report\Delete.cshtml" />
-    <Content Include="Views\Report\Details.cshtml" />
-    <Content Include="Views\Report\Edit.cshtml" />
-    <Content Include="Views\Report\Index.cshtml" />
-    <Content Include="Views\Report\GetAll.cshtml" />
     <Content Include="Views\VendingMachine\Create.cshtml" />
     <Content Include="Views\VendingMachine\Delete.cshtml" />
     <Content Include="Views\VendingMachine\Details.cshtml" />
     <Content Include="Views\VendingMachine\Edit.cshtml" />
     <Content Include="Views\VendingMachine\Index.cshtml" />
-    <Content Include="Views\Report\GetOne.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
     <Content Include="Views\StockHistory\Create.cshtml" />
     <Content Include="Views\StockHistory\Delete.cshtml" />
@@ -2137,6 +2130,13 @@
     <Content Include="Views\Stock\Details.cshtml" />
     <Content Include="Views\Stock\Edit.cshtml" />
     <Content Include="Views\Stock\Index.cshtml" />
+    <Content Include="Views\Report\Create.cshtml" />
+    <Content Include="Views\Report\Delete.cshtml" />
+    <Content Include="Views\Report\Details.cshtml" />
+    <Content Include="Views\Report\Edit.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\GetOne.cshtml" />
+    <Content Include="Views\Report\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

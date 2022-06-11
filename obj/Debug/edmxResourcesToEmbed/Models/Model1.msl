@@ -15,6 +15,8 @@
     <EntitySetMapping Name="tb_report">
       <EntityTypeMapping TypeName="db_mfaModel.tb_report">
         <MappingFragment StoreEntitySet="tb_report">
+          <ScalarProperty Name="r_sid" ColumnName="r_sid" />
+          <ScalarProperty Name="r_vmID" ColumnName="r_vmID" />
           <ScalarProperty Name="r_id" ColumnName="r_id" />
           <ScalarProperty Name="r_name" ColumnName="r_name" />
           <ScalarProperty Name="r_desc" ColumnName="r_desc" />

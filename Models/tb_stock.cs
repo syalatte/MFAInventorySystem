@@ -11,36 +11,26 @@ namespace MFAInventorySystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class tb_stock
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_stock()
         {
             this.tb_stockhistory = new HashSet<tb_stockhistory>();
+            this.tb_report = new HashSet<tb_report>();
         }
-
-
-        [DisplayName("Stock ID")]
+    
         public int s_id { get; set; }
-
-        [DisplayName("Product")]
         public string s_product { get; set; }
-
-        [DisplayName("Quantity")]
         public Nullable<int> s_qty { get; set; }
-
-        [DisplayName("Modal")]
         public Nullable<double> s_modal { get; set; }
-
-        [DisplayName("Selling Price")]
         public Nullable<double> s_hargaJualan { get; set; }
-
-        [DisplayName("Net Profit/Tin")]
         public Nullable<double> s_untungBersihPerTin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_stockhistory> tb_stockhistory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_report> tb_report { get; set; }
     }
 }

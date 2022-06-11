@@ -32,6 +32,12 @@ namespace MFAInventorySystem.Models
             [DisplayName("Capitals (RM)")]
             [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> r_capitals { get; set; }
+
+            [DisplayName("Vending Machine ID")]
+            public Nullable<int> r_vmID { get; set; }
+
+            [DisplayName("Stock ID")]
+            public Nullable<int> r_sid { get; set; }
         }
     }
 }

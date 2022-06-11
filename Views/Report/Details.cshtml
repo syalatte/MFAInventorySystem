@@ -5,63 +5,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h4 class="m-0 font-weight-bold text-primary">Details Report</h4>
-        <hr />
-        @Html.ActionLink("Print", "PrintOne", new { id = Model.r_id }, new { @class = "btn btn-outline-dark" })
+        <h4 class="m-0 font-weight-bold text-primary">Report Details</h4>
     </div>
     <div class="card-body">
         <div>
-            <div>
 
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.r_name)
-                    </dt>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.r_name)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.r_name)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.r_name)
+                </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.r_date)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.r_desc)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.r_date)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.r_desc)
+                </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.r_desc)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.r_date)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.r_desc)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.r_date)
+                </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.r_profits)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.r_profits)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.r_profits)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.r_profits)
+                </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.r_capitals)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.r_capitals)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.r_capitals)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.r_capitals)
+                </dd>
 
-                </dl>
-            </div>
-            </div></div></div>
-            <p>
-                @Html.ActionLink("Edit Description", "Edit", new { id = Model.r_id }, new { @class = "btn btn-outline-dark" }) |
-                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark" })
-            </p>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_vendingmachine.v_location)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_stock.s_product)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_stock.s_product)
+                </dd>
+
+            </dl>
+        </div>
+        </div></div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.r_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

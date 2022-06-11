@@ -20,6 +20,10 @@
     <Property Name="r_date" Type="DateTime" Precision="0" />
     <Property Name="r_profits" Type="Double" />
     <Property Name="r_capitals" Type="Double" />
+    <Property Name="r_vmID" Type="Int32" />
+    <NavigationProperty Name="tb_vendingmachine" Relationship="db_mfaModel.FK_tb_report_tb_vendingmachine" FromRole="tb_report" ToRole="tb_vendingmachine" />
+    <Property Name="r_sid" Type="Int32" />
+    <NavigationProperty Name="tb_stock" Relationship="db_mfaModel.FK_tb_report_tb_stock" FromRole="tb_report" ToRole="tb_stock" />
   </EntityType>
   <EntityType Name="tb_stock">
     <Key>
@@ -32,6 +36,7 @@
     <Property Name="s_hargaJualan" Type="Double" />
     <Property Name="s_untungBersihPerTin" Type="Double" />
     <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_stock" FromRole="tb_stock" ToRole="tb_stockhistory" />
+    <NavigationProperty Name="tb_report" Relationship="db_mfaModel.FK_tb_report_tb_stock" FromRole="tb_stock" ToRole="tb_report" />
   </EntityType>
   <EntityType Name="tb_stockhistory">
     <Key>
@@ -57,7 +62,7 @@
     <Property Name="u_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="u_contact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="u_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="u_pw" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="u_pw" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="u_type" Type="Int32" />
     <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_user" FromRole="tb_user" ToRole="tb_stockhistory" />
     <NavigationProperty Name="tb_usertype" Relationship="Self.FK_tb_user_tb_usertype" FromRole="tb_user" ToRole="tb_usertype" />
@@ -79,6 +84,7 @@
     <Property Name="v_cashInSlot" Type="Double" />
     <Property Name="v_profit" Type="Double" />
     <NavigationProperty Name="tb_stockhistory" Relationship="Self.FK_tb_stockhistory_tb_vendingmachine" FromRole="tb_vendingmachine" ToRole="tb_stockhistory" />
+    <NavigationProperty Name="tb_report" Relationship="db_mfaModel.FK_tb_report_tb_vendingmachine" FromRole="tb_vendingmachine" ToRole="tb_report" />
   </EntityType>
   <Association Name="FK_tb_stockhistory_tb_stock">
     <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
@@ -152,5 +158,37 @@
       <End Role="tb_usertype" EntitySet="tb_usertype" />
       <End Role="tb_user" EntitySet="tb_user" />
     </AssociationSet>
+    <AssociationSet Name="FK_tb_report_tb_vendingmachine" Association="db_mfaModel.FK_tb_report_tb_vendingmachine">
+      <End Role="tb_vendingmachine" EntitySet="tb_vendingmachine" />
+      <End Role="tb_report" EntitySet="tb_report" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_report_tb_stock" Association="db_mfaModel.FK_tb_report_tb_stock">
+      <End Role="tb_stock" EntitySet="tb_stock" />
+      <End Role="tb_report" EntitySet="tb_report" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_tb_report_tb_vendingmachine">
+    <End Type="db_mfaModel.tb_vendingmachine" Role="tb_vendingmachine" Multiplicity="0..1" />
+    <End Type="db_mfaModel.tb_report" Role="tb_report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_vendingmachine">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="tb_report">
+        <PropertyRef Name="r_vmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_report_tb_stock">
+    <End Type="db_mfaModel.tb_stock" Role="tb_stock" Multiplicity="0..1" />
+    <End Type="db_mfaModel.tb_report" Role="tb_report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_stock">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="tb_report">
+        <PropertyRef Name="r_sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

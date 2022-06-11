@@ -4,15 +4,13 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h4 class="m-0 font-weight-bold text-primary">Create New Report</h4>
+        <h5 class="m-0 font-weight-bold text-primary">Create New Report</h5>
     </div>
     <div class="card-body">
-        <div>
+        <div class="table-responsive">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
@@ -45,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.r_profits, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.r_profits, htmlAttributes: new { @class = "control-label col-md-5" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.r_profits, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.r_profits, "", new { @class = "text-danger" })
@@ -61,6 +59,22 @@
                     </div>
 
                     <div class="form-group">
+                        @Html.LabelFor(model => model.r_vmID, "Location", htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("r_vmID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.r_vmID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.r_sid, "Product", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("r_sid", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.r_sid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Create" class="btn btn-success" />
                         </div>
@@ -68,7 +82,6 @@
                 </div>
             }
             </div></div></div>
-
             <div>
                 @Html.ActionLink("Back to List", "Index")
             </div>

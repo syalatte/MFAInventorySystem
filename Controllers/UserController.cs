@@ -182,6 +182,8 @@ namespace MFAInventorySystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var unhashedPass = tb_user.u_pw;
+                tb_user.u_pw = HashPassword(unhashedPass);
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ChangePassword");

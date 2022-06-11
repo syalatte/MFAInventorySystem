@@ -20,6 +20,8 @@
     <Property Name="r_date" Type="date" />
     <Property Name="r_profits" Type="float" />
     <Property Name="r_capitals" Type="float" />
+    <Property Name="r_vmID" Type="int" />
+    <Property Name="r_sid" Type="int" />
   </EntityType>
   <EntityType Name="tb_stock">
     <Key>
@@ -53,7 +55,7 @@
     <Property Name="u_name" Type="varchar" MaxLength="50" />
     <Property Name="u_contact" Type="varchar" MaxLength="15" />
     <Property Name="u_email" Type="varchar" MaxLength="50" />
-    <Property Name="u_pw" Type="varchar" MaxLength="50" />
+    <Property Name="u_pw" Type="nvarchar(max)" />
     <Property Name="u_type" Type="int" />
   </EntityType>
   <EntityType Name="tb_usertype">
@@ -72,6 +74,30 @@
     <Property Name="v_cashInSlot" Type="float" />
     <Property Name="v_profit" Type="float" />
   </EntityType>
+  <Association Name="FK_tb_report_tb_stock">
+    <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
+    <End Role="tb_report" Type="Self.tb_report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_stock">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="tb_report">
+        <PropertyRef Name="r_sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_report_tb_vendingmachine">
+    <End Role="tb_vendingmachine" Type="Self.tb_vendingmachine" Multiplicity="0..1" />
+    <End Role="tb_report" Type="Self.tb_report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_vendingmachine">
+        <PropertyRef Name="v_id" />
+      </Principal>
+      <Dependent Role="tb_report">
+        <PropertyRef Name="r_vmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tb_stockhistory_tb_stock">
     <End Role="tb_stock" Type="Self.tb_stock" Multiplicity="0..1" />
     <End Role="tb_stockhistory" Type="Self.tb_stockhistory" Multiplicity="*" />
@@ -128,6 +154,14 @@
     <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_usertype" EntityType="Self.tb_usertype" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_vendingmachine" EntityType="Self.tb_vendingmachine" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb_report_tb_stock" Association="Self.FK_tb_report_tb_stock">
+      <End Role="tb_stock" EntitySet="tb_stock" />
+      <End Role="tb_report" EntitySet="tb_report" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_report_tb_vendingmachine" Association="Self.FK_tb_report_tb_vendingmachine">
+      <End Role="tb_vendingmachine" EntitySet="tb_vendingmachine" />
+      <End Role="tb_report" EntitySet="tb_report" />
+    </AssociationSet>
     <AssociationSet Name="FK_tb_stockhistory_tb_stock" Association="Self.FK_tb_stockhistory_tb_stock">
       <End Role="tb_stock" EntitySet="tb_stock" />
       <End Role="tb_stockhistory" EntitySet="tb_stockhistory" />

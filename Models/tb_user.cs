@@ -11,9 +11,7 @@ namespace MFAInventorySystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tb_user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,32 +19,17 @@ namespace MFAInventorySystem.Models
         {
             this.tb_stockhistory = new HashSet<tb_stockhistory>();
         }
-
-        [DisplayName("UserID")]
-        [Required(ErrorMessage = "This field is required.")]
+    
         public string u_id { get; set; }
-
-        [DisplayName("Name")]
         public string u_name { get; set; }
-
-        [DisplayName("Contact")]
         public string u_contact { get; set; }
-
-        [DisplayName("Email")]
         public string u_email { get; set; }
-
-        [DisplayName("Password")]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "This field is required.")]
         public string u_pw { get; set; }
-
-        [DisplayName("User Type")]
         public Nullable<int> u_type { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_stockhistory> tb_stockhistory { get; set; }
         public virtual tb_usertype tb_usertype { get; set; }
-
         public string LoginErrorMessage { get; set; }
     }
 }

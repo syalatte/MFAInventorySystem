@@ -5,74 +5,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h4 class="m-0 font-weight-bold text-primary">List of Reports</h4>
-    <hr />
-        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-outline-dark" })
-        @Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-dark" })
-    </div>
-        
-    
-    <div class="card-body">
-        <div>
-            <div>
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r_id)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r_name)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r_date)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r_desc)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r_profits)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.r_capitals)
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r_id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r_name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r_date)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r_desc)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r_profits)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.r_capitals)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.r_id }, new { @class = "btn btn-dark" }) 
-                                @Html.ActionLink("Details", "Details", new { id = item.r_id }, new { @class = "btn btn-secondary" }) 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.r_id }, new { @class = "btn btn-danger" })
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-            </div>
+    <!-- Page Heading -->
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Manage Report</h4>
         </div>
-    </div>
-</div>
+        <div class="card-body">
+            <p>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.r_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.r_desc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.r_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.r_profits)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.r_capitals)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tb_stock.s_product)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.r_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.r_desc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.r_date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.r_profits)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.r_capitals)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_vendingmachine.v_location)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_stock.s_product)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.r_id }, new { @class = "btn btn-dark btnStyle" }) 
+                            @Html.ActionLink("Details", "Details", new { id = item.r_id }, new { @class = "btn btn-secondary btnStyle" }) 
+                            @Html.ActionLink("Delete", "Delete", new { id = item.r_id }, new { @class = "btn btn-danger btnStyle" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            </div></div></div>
