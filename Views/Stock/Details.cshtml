@@ -5,55 +5,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">Stock Details</h4>
+    </div>
+    <div class="card-body">
+        <div>
 
-<div>
-    <h4>tb_stock</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.s_product)
-        </dt>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.s_product)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.s_product)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.s_product)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.s_qty)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.s_qty)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.s_qty)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.s_qty)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.s_modal)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.s_modal)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.s_modal)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.s_modal)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.s_hargaJualan)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.s_hargaJualan)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.s_hargaJualan)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.s_hargaJualan)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.s_untungBersihPerTin)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.s_untungBersihPerTin)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.s_untungBersihPerTin)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.s_untungBersihPerTin)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.s_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div></div></div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.s_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

@@ -11,15 +11,19 @@ namespace MFAInventorySystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tb_stockhistory
     {
+        [DisplayName("StockHistory ID")]
         public int sh_id { get; set; }
         public Nullable<int> sh_sid { get; set; }
         public Nullable<int> sh_qtySlot { get; set; }
         public Nullable<int> sh_vmID { get; set; }
         public Nullable<double> sh_untungBersih { get; set; }
         public Nullable<System.DateTime> sh_date { get; set; }
+
+        [DisplayName("Name")]
         public string sh_uid { get; set; }
         public Nullable<int> sh_qtySold { get; set; }
     

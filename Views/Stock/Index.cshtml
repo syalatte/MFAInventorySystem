@@ -5,54 +5,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.s_product)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.s_qty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.s_modal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.s_hargaJualan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.s_untungBersihPerTin)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Page Heading -->
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Manage Stocks</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <p>
+                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.s_product)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.s_qty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.s_modal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.s_hargaJualan)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.s_untungBersihPerTin)
+                        </th>
+                        <th></th>
+                    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.s_product)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.s_qty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.s_modal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.s_hargaJualan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.s_untungBersihPerTin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.s_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.s_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.s_id })
-        </td>
-    </tr>
-}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.s_product)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.s_qty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.s_modal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.s_hargaJualan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.s_untungBersihPerTin)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.s_id }, new { @class = "btn btn-dark btnStyle" }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.s_id }, new { @class = "btn btn-secondary btnStyle" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.s_id }, new { @class = "btn btn-danger btnStyle" })
+                            </td>
+                        </tr>
+                    }
 
-</table>
+                </table>
+                </div></div></div></div>
