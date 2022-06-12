@@ -21,8 +21,9 @@ namespace MFAInventorySystem.Controllers
                 var numEmployee = db.tb_user.Where(a => a.u_type == 2).Count();
                 var numVM = db.tb_vendingmachine.Count();
                 var numStock = db.tb_stock.Count();
-                
-                
+                //var profits = db.tb_vendingmachine.Sum(v_profit);
+
+
 
                 ViewBag.numEmployer = numEmployer;
                 ViewBag.numEmployee = numEmployee;
