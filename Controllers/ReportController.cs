@@ -50,6 +50,13 @@ namespace MFAInventorySystem.Controllers
             ViewBag.r_vmID = new SelectList(db.tb_vendingmachine, "v_id", "v_location");
             return View();
         }
+
+        public ActionResult CreateStock()
+        {
+            ViewBag.r_sid = new SelectList(db.tb_stock, "s_id", "s_product");
+            return View();
+        }
+
         // POST: Report/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -83,7 +90,7 @@ namespace MFAInventorySystem.Controllers
                 var r_desc = tb_report.r_desc;
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
                 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -138,6 +145,76 @@ namespace MFAInventorySystem.Controllers
             ViewBag.r_sid = new SelectList(db.tb_stock, "s_id", "s_product", tb_report.r_sid);
             return View(tb_report);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateStock(tb_report tb_report)
+        {
+            if (ModelState.IsValid)
+            {
+                //variable assign for report
+                var v_id = tb_report.r_vmID;
+                var r_name = tb_report.r_name;
+                var r_date = tb_report.r_date;
+                var r_desc = tb_report.r_desc;
+                var r_sid = tb_report.r_sid;
+                //data connection
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlDataAdapter cmd = new SqlDataAdapter();
+
+                //select total capital from table stock based on stock history by comparing vending machine id
+                cmd.InsertCommand = new SqlCommand("select sum(tb_stock.s_modal) from tb_stock,tb_stockhistory where (tb_stockhistory.sh_sid=@r_sid) AND (tb_stockhistory.sh_sid=tb_stock.s_id);");
+                cmd.InsertCommand.Connection = con;
+                {
+
+
+                    cmd.InsertCommand.Parameters.Add("r_sid", r_sid.ToString());
+
+
+                    con.Open();
+                    //assign the sql into variable
+                    var r_capitals = cmd.InsertCommand.ExecuteScalar();
+
+                    con.Close();
+
+                    //Select the total profit for the vending machine
+                    cmd.InsertCommand = new SqlCommand("select sum(tb_stockhistory.sh_untungbersih) from tb_stockhistory where tb_stockhistory.sh_sid=@r_sid;");
+                    cmd.InsertCommand.Connection = con;
+                    cmd.InsertCommand.Parameters.Add("r_sid", r_sid.ToString());
+
+
+                    con.Open();
+                    //Save the result in corresponding variable
+                    var r_profits = cmd.InsertCommand.ExecuteScalar();
+
+                    con.Close();
+
+                    //process of inserting the data into tb_report
+                    cmd.InsertCommand = new SqlCommand("Insert into tb_report(r_sid,r_name,r_date,r_desc,r_profits,r_capitals,r_vmID) Values(@r_sid,@r_name,@r_date,@r_desc,@r_profits,@r_capitals,@v_id);");
+                    cmd.InsertCommand.Connection = con;
+                    cmd.InsertCommand.Parameters.Add("r_sid", r_sid.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_name", r_name.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_date", r_date.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_desc", r_desc.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_profits", r_profits.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_capitals", r_capitals.ToString());
+                    cmd.InsertCommand.Parameters.Add("v_id", v_id.ToString());
+
+
+                    con.Open();
+                    cmd.InsertCommand.ExecuteNonQuery();
+
+                    con.Close();
+                }
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.r_vmID = new SelectList(db.tb_vendingmachine, "v_id", "v_location", tb_report.r_vmID);
+            ViewBag.r_sid = new SelectList(db.tb_stock, "s_id", "s_product", tb_report.r_sid);
+            return View(tb_report);
+        }
+
         // GET: Report/Edit/5
         public ActionResult Edit(int? id)
         {

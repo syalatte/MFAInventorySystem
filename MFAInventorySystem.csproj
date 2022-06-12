@@ -2138,6 +2138,7 @@
     <Content Include="Views\Report\GetOne.cshtml" />
     <Content Include="Views\Report\GetAll.cshtml" />
     <Content Include="Views\Report\CreateVending.cshtml" />
+    <Content Include="Views\Report\CreateStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
