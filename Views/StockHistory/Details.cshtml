@@ -5,71 +5,74 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">Stock History Details</h4>
+    </div>
+    <div class="card-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.sh_qtySlot)
+                </dt>
 
-<div>
-    <h4>tb_stockhistory</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.sh_qtySlot)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sh_qtySlot)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sh_qtySlot)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.sh_untungBersih)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sh_untungBersih)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sh_untungBersih)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sh_untungBersih)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.sh_date)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sh_date)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sh_date)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sh_date)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.sh_qtySold)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sh_qtySold)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sh_qtySold)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sh_qtySold)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_stock.s_product)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_stock.s_product)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tb_stock.s_product)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tb_stock.s_product)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_user.u_name)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_user.u_name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tb_user.u_name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tb_user.u_name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_vendingmachine.v_location)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tb_vendingmachine.v_location)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tb_vendingmachine.v_location)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.sh_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.sh_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        </div></div>

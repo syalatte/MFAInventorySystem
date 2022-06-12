@@ -90,7 +90,7 @@ namespace MFAInventorySystem.Controllers
                 var r_desc = tb_report.r_desc;
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -159,7 +159,7 @@ namespace MFAInventorySystem.Controllers
                 var r_desc = tb_report.r_desc;
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
