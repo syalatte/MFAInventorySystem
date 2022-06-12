@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,12 +47,31 @@ namespace MFAInventorySystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "v_id,v_location,v_cashInSlot,v_profit")] tb_vendingmachine tb_vendingmachine)
+        public ActionResult Create(tb_vendingmachine tb_vendingmachine)
         {
             if (ModelState.IsValid)
             {
-                db.tb_vendingmachine.Add(tb_vendingmachine);
-                db.SaveChanges();
+                var v_location = tb_vendingmachine.v_location;
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlDataAdapter cmd = new SqlDataAdapter();
+                cmd.InsertCommand = new SqlCommand("Insert into tb_vendingmachine Values(@v_location,0,0);");
+                cmd.InsertCommand.Connection = con;
+                {
+                    //command for updating stock storage
+
+                    cmd.InsertCommand.Parameters.Add("v_location", v_location.ToString());
+                   
+
+
+                    con.Open();
+                    cmd.InsertCommand.ExecuteNonQuery();
+
+                    con.Close();
+
+
+                    
+                }
                 return RedirectToAction("Index");
             }
 
@@ -78,10 +98,11 @@ namespace MFAInventorySystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "v_id,v_location,v_cashInSlot,v_profit")] tb_vendingmachine tb_vendingmachine)
+        public ActionResult Edit( tb_vendingmachine tb_vendingmachine)
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(tb_vendingmachine).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

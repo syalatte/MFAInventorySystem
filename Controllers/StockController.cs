@@ -46,10 +46,11 @@ namespace MFAInventorySystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "s_id,s_product,s_qty,s_modal,s_hargaJualan,s_untungBersihPerTin")] tb_stock tb_stock)
+        public ActionResult Create( tb_stock tb_stock)
         {
             if (ModelState.IsValid)
             {
+                tb_stock.s_untungBersihPerTin = tb_stock.s_hargaJualan - (tb_stock.s_modal / tb_stock.s_qty);
                 db.tb_stock.Add(tb_stock);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,15 +79,22 @@ namespace MFAInventorySystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "s_id,s_product,s_qty,s_modal,s_hargaJualan,s_untungBersihPerTin")] tb_stock tb_stock)
+        public ActionResult Edit( tb_stock tb_Stock)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tb_stock).State = EntityState.Modified;
+
+                var sellbefore = (from tb_stock in db.tb_stock where tb_stock.s_id == tb_Stock.s_id select tb_stock.s_hargaJualan).Sum();
+                var profitbefore = (from tb_stock in db.tb_stock where tb_stock.s_id == tb_Stock.s_id select tb_stock.s_untungBersihPerTin).Sum();
+
+                var profitdifferent = tb_Stock.s_hargaJualan - sellbefore;
+                tb_Stock.s_untungBersihPerTin = profitbefore + profitdifferent;
+                
+                db.Entry(tb_Stock).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tb_stock);
+            return View(tb_Stock);
         }
 
         // GET: Stock/Delete/5
