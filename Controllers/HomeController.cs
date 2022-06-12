@@ -14,36 +14,33 @@ namespace MFAInventorySystem.Controllers
         {
             using (db_mfaEntities db = new db_mfaEntities())
             {
-
-
-
                 var numEmployer = db.tb_user.Where(a => a.u_type == 1).Count();
                 var numEmployee = db.tb_user.Where(a => a.u_type == 2).Count();
                 var numVM = db.tb_vendingmachine.Count();
                 var numStock = db.tb_stock.Count();
-                //var profits = db.tb_vendingmachine.Sum(v_profit);
-
-
+                var profits = db.tb_vendingmachine.Sum(a => a.v_profit);
+                var capitals = db.tb_stock.Sum(a => a.s_modal);
 
                 ViewBag.numEmployer = numEmployer;
                 ViewBag.numEmployee = numEmployee;
                 ViewBag.numVM = numVM;
                 ViewBag.numStock = numStock;
-                
+                ViewBag.profits = profits;
+                ViewBag.capitals = capitals;
 
                 return View();
             }
         }
         public ActionResult Index2()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            using (db_mfaEntities db = new db_mfaEntities())
+            {
+                var numVM = db.tb_vendingmachine.Count();
+                var numStock = db.tb_stock.Count();
+                ViewBag.numVM = numVM;
+                ViewBag.numStock = numStock;
+                return View();
+            }
         }
 
         public ActionResult Contact()
