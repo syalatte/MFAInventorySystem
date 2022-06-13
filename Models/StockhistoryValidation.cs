@@ -25,9 +25,11 @@ namespace MFAInventorySystem.Models
             public Nullable<int> sh_vmID { get; set; }
 
             [DisplayName("Net Profits")]
+            [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> sh_untungBersih { get; set; }
 
             [DisplayName("Date")]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
             public Nullable<System.DateTime> sh_date { get; set; }
 
             [DisplayName("Name")]

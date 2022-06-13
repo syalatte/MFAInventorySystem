@@ -22,12 +22,15 @@ namespace MFAInventorySystem.Models
             public Nullable<int> s_qty { get; set; }
 
             [DisplayName("Modal")]
+            [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> s_modal { get; set; }
 
             [DisplayName("Selling Price")]
+            [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> s_hargaJualan { get; set; }
 
             [DisplayName("Net Profit/Tin")]
+            [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> s_untungBersihPerTin { get; set; }
         }
     }
