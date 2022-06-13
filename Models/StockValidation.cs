@@ -21,7 +21,7 @@ namespace MFAInventorySystem.Models
             [DisplayName("Quantity")]
             public Nullable<int> s_qty { get; set; }
 
-            [DisplayName("Modal")]
+            [DisplayName("Cost")]
             [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> s_modal { get; set; }
 
