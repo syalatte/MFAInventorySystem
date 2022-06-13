@@ -16,6 +16,9 @@
         </div>
         <div class="card-body">
             <p>
+                @Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-dark" })
+                </p>
+        <p>
                 @Html.ActionLink("Create Stock Report", "CreateStock", null, new { @class = "btn btn-outline-dark" })
                 @Html.ActionLink("Create Vending Machine Report", "CreateVending", null, new { @class = "btn btn-outline-dark" })
             </p>

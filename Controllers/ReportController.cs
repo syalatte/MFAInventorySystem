@@ -86,11 +86,11 @@ namespace MFAInventorySystem.Controllers
                 //variable assign for report
                 var v_id = tb_report.r_vmID;
                 var r_name = tb_report.r_name;
-                var r_date = tb_report.r_date;
+                var r_date = DateTime.Now;
                 var r_desc = tb_report.r_desc;
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -125,7 +125,7 @@ namespace MFAInventorySystem.Controllers
                     cmd.InsertCommand.Connection = con;
                     cmd.InsertCommand.Parameters.Add("r_sid", r_sid.ToString());
                     cmd.InsertCommand.Parameters.Add("r_name", r_name.ToString());
-                    cmd.InsertCommand.Parameters.Add("r_date", r_date.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_date", r_date);
                     cmd.InsertCommand.Parameters.Add("r_desc", r_desc.ToString());
                     cmd.InsertCommand.Parameters.Add("r_profits", r_profits.ToString());
                     cmd.InsertCommand.Parameters.Add("r_capitals", r_capitals.ToString());
@@ -155,11 +155,11 @@ namespace MFAInventorySystem.Controllers
                 //variable assign for report
                 var v_id = tb_report.r_vmID;
                 var r_name = tb_report.r_name;
-                var r_date = tb_report.r_date;
+                var r_date = DateTime.Now;
                 var r_desc = tb_report.r_desc;
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -194,7 +194,7 @@ namespace MFAInventorySystem.Controllers
                     cmd.InsertCommand.Connection = con;
                     cmd.InsertCommand.Parameters.Add("r_sid", r_sid.ToString());
                     cmd.InsertCommand.Parameters.Add("r_name", r_name.ToString());
-                    cmd.InsertCommand.Parameters.Add("r_date", r_date.ToString());
+                    cmd.InsertCommand.Parameters.Add("r_date", r_date);
                     cmd.InsertCommand.Parameters.Add("r_desc", r_desc.ToString());
                     cmd.InsertCommand.Parameters.Add("r_profits", r_profits.ToString());
                     cmd.InsertCommand.Parameters.Add("r_capitals", r_capitals.ToString());
