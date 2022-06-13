@@ -28,7 +28,7 @@ namespace MFAInventorySystem.Controllers
 
                 if (PasswordCorrect == false)
                 {
-                    userModel.LoginErrorMessage = "Pengguna tidak dijumpa";
+                    userModel.LoginErrorMessage = "User Not Found";
                     return View("Index", userModel);
                 }
                 if (userDetails == null)

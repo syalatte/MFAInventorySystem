@@ -18,15 +18,15 @@ namespace MFAInventorySystem.Controllers
                 var numEmployee = db.tb_user.Where(a => a.u_type == 2).Count();
                 var numVM = db.tb_vendingmachine.Count();
                 var numStock = db.tb_stock.Count();
-                var profits = db.tb_vendingmachine.Sum(a => a.v_profit);
-                var capitals = db.tb_stock.Sum(a => a.s_modal);
+                var profits = db.tb_vendingmachine.Sum(a => a.v_profit).Value;
+                var capitals = db.tb_stock.Sum(a => a.s_modal).Value;
 
                 ViewBag.numEmployer = numEmployer;
                 ViewBag.numEmployee = numEmployee;
                 ViewBag.numVM = numVM;
                 ViewBag.numStock = numStock;
-                ViewBag.profits = profits;
-                ViewBag.capitals = capitals;
+                ViewBag.profits = profits.ToString("0.00");
+                ViewBag.capitals = capitals.ToString("0.00");
 
                 return View();
             }
