@@ -5,9 +5,11 @@ using System.Security.Cryptography;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MFAInventorySystem.Controllers
 {
+    
     public class LoginController : Controller
     {
         // GET: Login
@@ -36,7 +38,7 @@ namespace MFAInventorySystem.Controllers
                 }
                 else
                 {
-                    Session["uid"] = userDetails.u_id;
+                    //Session["uid"] = userDetails.u_id;
                     
                     
 
@@ -101,11 +103,26 @@ namespace MFAInventorySystem.Controllers
             }
             return true;
         }
+
+
+        //public ActionResult Logout()
+        //{
+        //    FormsAuthentication.SignOut();
+        //    //Session["uid"] = null;
+        //    ////Session["utype"] = null;
+        //    //Session["uname"] = null;
+        //    Session.Abandon();
+        //    return RedirectToAction("Index", "Login");
+
+        //}
         public ActionResult Logout()
         {
-            string uid = (string)Session["uid"];
-            Session.Abandon();
+            FormsAuthentication.SignOut();
+            Session["uid"] = null;
+            Session["uname"] = null;
+            Session["utype"] = null;
             return RedirectToAction("Index", "Login");
+
         }
 
     }
