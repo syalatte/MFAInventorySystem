@@ -19,9 +19,11 @@ namespace MFAInventorySystem.Models
             public string v_location { get; set; }
 
             [DisplayName("Cash In Slot")]
+            [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> v_cashInSlot { get; set; }
 
             [DisplayName("Profits")]
+            [DisplayFormat(DataFormatString = "{0:n2}")]
             public Nullable<double> v_profit { get; set; }
         }
     }
