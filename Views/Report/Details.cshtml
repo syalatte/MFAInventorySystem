@@ -7,12 +7,12 @@
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h4 class="m-0 font-weight-bold text-primary">Report Details</h4>
+    <div class="card-header py-3" id="printArea">
+            <h4 class="m-0 font-weight-bold text-primary">Report Details</h4>
     </div>
     <div class="card-body">
         <p>
-            @Html.ActionLink("Print", "PrintOne", null, new { @class = "btn btn-outline-dark" })
+
         </p>
         <div>
 
@@ -73,10 +73,38 @@
                     @Html.DisplayFor(model => model.tb_stock.s_product)
                 </dd>
 
+                <input type="button" value="Print"
+                       onclick="window.print()" />
+
             </dl>
         </div>
-        </div></div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.r_id }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.r_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+<script>
+    function printContents(printArea) {
+        var printContent = document.getElementById(printArea);
+        var WinPrint = window.open('', '', 'width=900,height=650');
+        WinPrint.document.write(printContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+</script>
