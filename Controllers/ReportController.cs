@@ -87,10 +87,10 @@ namespace MFAInventorySystem.Controllers
                 var v_id = tb_report.r_vmID;
                 var r_name = tb_report.r_name;
                 var r_date = DateTime.Now;
-                var r_desc = tb_report.r_desc;
                 var r_sid = tb_report.r_sid;
+                 
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -116,10 +116,22 @@ namespace MFAInventorySystem.Controllers
 
                     con.Open();
                     //Save the result in corresponding variable
-                    var r_profits = cmd.InsertCommand.ExecuteScalar();
-
+                    var r_profits = (double)cmd.InsertCommand.ExecuteScalar();
+                    var r_desc = "";
+                    var profit = r_profits;
+                    if (profit <= 0)
+                    {
+                        r_desc = "This Vending Machine is not making a profit.";
+                    }
+                    else
+                    {
+                        r_desc = "This Vending Machine is making a profit.";
+                    }
                     con.Close();
 
+                    
+                    
+                    
                     //process of inserting the data into tb_report
                     cmd.InsertCommand = new SqlCommand("Insert into tb_report(r_sid,r_name,r_date,r_desc,r_profits,r_capitals,r_vmID) Values(@r_sid,@r_name,@r_date,@r_desc,@r_profits,@r_capitals,@v_id);");
                     cmd.InsertCommand.Connection = con;
@@ -156,10 +168,10 @@ namespace MFAInventorySystem.Controllers
                 var v_id = tb_report.r_vmID;
                 var r_name = tb_report.r_name;
                 var r_date = DateTime.Now;
-                var r_desc = tb_report.r_desc;
+                
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -185,7 +197,17 @@ namespace MFAInventorySystem.Controllers
 
                     con.Open();
                     //Save the result in corresponding variable
-                    var r_profits = cmd.InsertCommand.ExecuteScalar();
+                    var r_profits = (double)cmd.InsertCommand.ExecuteScalar();
+                    var profit = r_profits;
+                    var r_desc = "";
+                    if (profit <= 0)
+                    {
+                         r_desc = "This Stock is not making a profit.";
+                    }
+                    else
+                    {
+                        r_desc = "This Stock is making a profit.";
+                    }
 
                     con.Close();
 

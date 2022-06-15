@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -117,8 +118,24 @@ namespace MFAInventorySystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tb_stock tb_stock = db.tb_stock.Find(id);
-            db.tb_stock.Remove(tb_stock);
+            tb_stock tb_Stock = db.tb_stock.Find(id);
+            var s_id = tb_Stock.s_id;
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+            SqlDataAdapter cmd = new SqlDataAdapter();
+           
+
+                cmd.InsertCommand = new SqlCommand("DELETE FROM tb_stockhistory WHERE sh_sid=@s_id;");
+                cmd.InsertCommand.Connection = con;
+                cmd.InsertCommand.Parameters.Add("s_id", s_id.ToString());
+
+            con.Open();
+            cmd.InsertCommand.ExecuteNonQuery();
+
+            con.Close();
+
+
+
+            db.tb_stock.Remove(tb_Stock);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

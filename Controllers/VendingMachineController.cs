@@ -131,6 +131,20 @@ namespace MFAInventorySystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tb_vendingmachine tb_vendingmachine = db.tb_vendingmachine.Find(id);
+
+            var v_id = tb_vendingmachine.v_id;
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+            SqlDataAdapter cmd = new SqlDataAdapter();
+
+
+            cmd.InsertCommand = new SqlCommand("DELETE FROM tb_stockhistory WHERE sh_vmID=@v_id;");
+            cmd.InsertCommand.Connection = con;
+            cmd.InsertCommand.Parameters.Add("v_id", v_id.ToString());
+
+            con.Open();
+            cmd.InsertCommand.ExecuteNonQuery();
+
+            con.Close();
             db.tb_vendingmachine.Remove(tb_vendingmachine);
             db.SaveChanges();
             return RedirectToAction("Index");
