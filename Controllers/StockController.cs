@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MFAInventorySystem.Models;
+using Rotativa;
 
 namespace MFAInventorySystem.Controllers
 {
@@ -54,6 +55,7 @@ namespace MFAInventorySystem.Controllers
                 tb_stock.s_untungBersihPerTin = tb_stock.s_hargaJualan - (tb_stock.s_modal / tb_stock.s_qty);
                 db.tb_stock.Add(tb_stock);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Stock successfully added!";
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +95,7 @@ namespace MFAInventorySystem.Controllers
                 
                 db.Entry(tb_Stock).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Stock successfully modified!";
                 return RedirectToAction("Index");
             }
             return View(tb_Stock);
@@ -120,7 +123,7 @@ namespace MFAInventorySystem.Controllers
         {
             tb_stock tb_Stock = db.tb_stock.Find(id);
             var s_id = tb_Stock.s_id;
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+            SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
             SqlDataAdapter cmd = new SqlDataAdapter();
            
 
@@ -137,9 +140,20 @@ namespace MFAInventorySystem.Controllers
 
             db.tb_stock.Remove(tb_Stock);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Stock successfully deleted!";
             return RedirectToAction("Index");
         }
+        public ActionResult GetAll()
+        {
+            var s = db.tb_stock.ToList();
+            return View(s);
+        }
 
+        public ActionResult PrintAll()
+        {
+            var q = new ActionAsPdf("GetAll");
+            return q;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -8,6 +8,7 @@ using System.Web;
 using System.Security.Cryptography;
 using System.Web.Mvc;
 using MFAInventorySystem.Models;
+using Rotativa;
 
 namespace MFAInventorySystem.Controllers
 {
@@ -58,6 +59,7 @@ namespace MFAInventorySystem.Controllers
                 tb_user.u_pw = HashPassword(unhashedPass);
                 db.tb_user.Add(tb_user);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "User successfully added!";
                 return RedirectToAction("Index");
             }
 
@@ -92,6 +94,7 @@ namespace MFAInventorySystem.Controllers
             {
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "User successfully modified!";
                 return RedirectToAction("Index");
             }
             ViewBag.u_type = new SelectList(db.tb_usertype, "ut_id", "ut_desc", tb_user.u_type);
@@ -121,6 +124,7 @@ namespace MFAInventorySystem.Controllers
             tb_user tb_user = db.tb_user.Find(id);
             db.tb_user.Remove(tb_user);
             db.SaveChanges();
+            TempData["AlertMessage"] = "User successfully deleted!";
             return RedirectToAction("Index");
         }
 
@@ -151,6 +155,7 @@ namespace MFAInventorySystem.Controllers
             {
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Profile successfully updated!";
                 return RedirectToAction("EditProfile");
             }
             ViewBag.u_type = new SelectList(db.tb_usertype, "ut_id", "ut_desc", tb_user.u_type);
@@ -186,13 +191,24 @@ namespace MFAInventorySystem.Controllers
                 tb_user.u_pw = HashPassword(unhashedPass);
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Password successfully updated!";
                 return RedirectToAction("ChangePassword");
             }
             ViewBag.u_type = new SelectList(db.tb_usertype, "ut_id", "ut_desc", tb_user.u_type);
             return View(tb_user);
         }
 
-        
+        public ActionResult GetAll()
+        {
+            var user = db.tb_user.ToList();
+            return View(user);
+        }
+
+        public ActionResult PrintAll()
+        {
+            var q = new ActionAsPdf("GetAll");
+            return q;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

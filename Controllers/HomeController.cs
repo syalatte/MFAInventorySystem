@@ -49,5 +49,21 @@ namespace MFAInventorySystem.Controllers
 
             return View();
         }
+        public ActionResult Viewpdf()
+        {
+            return View();
+        }
+        public ActionResult Viewpdf2()
+        {
+            return View();
+        }
+
+        public PartialViewResult PDFPartialView()
+        {
+            ViewBag.pdf = @Url.Content("~/Content/AD_WBL_Project.pdf");
+            //if you don't have url get the url from database here by passing id in the ActionMethod
+            // and pass it in Partial View using ViewBag
+            return PartialView();
+        }
     }
 }

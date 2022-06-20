@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MFAInventorySystem.Models;
+using Rotativa;
 
 namespace MFAInventorySystem.Controllers
 {
@@ -53,7 +54,7 @@ namespace MFAInventorySystem.Controllers
             {
                 var v_location = tb_vendingmachine.v_location;
 
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
                 cmd.InsertCommand = new SqlCommand("Insert into tb_vendingmachine Values(@v_location,0,0);");
                 cmd.InsertCommand.Connection = con;
@@ -72,6 +73,7 @@ namespace MFAInventorySystem.Controllers
 
                     
                 }
+                TempData["AlertMessage"] = "Vending machine successfully added!";
                 return RedirectToAction("Index");
             }
 
@@ -105,6 +107,7 @@ namespace MFAInventorySystem.Controllers
                 
                 db.Entry(tb_vendingmachine).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Vending machine successfully modified!";
                 return RedirectToAction("Index");
             }
             return View(tb_vendingmachine);
@@ -133,7 +136,7 @@ namespace MFAInventorySystem.Controllers
             tb_vendingmachine tb_vendingmachine = db.tb_vendingmachine.Find(id);
 
             var v_id = tb_vendingmachine.v_id;
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+            SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
             SqlDataAdapter cmd = new SqlDataAdapter();
 
 
@@ -147,9 +150,20 @@ namespace MFAInventorySystem.Controllers
             con.Close();
             db.tb_vendingmachine.Remove(tb_vendingmachine);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Vending machine successfully deleted!";
             return RedirectToAction("Index");
         }
+        public ActionResult GetAll()
+        {
+            var vm = db.tb_vendingmachine.ToList();
+            return View(vm);
+        }
 
+        public ActionResult PrintAll()
+        {
+            var q = new ActionAsPdf("GetAll");
+            return q;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

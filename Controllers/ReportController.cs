@@ -69,6 +69,7 @@ namespace MFAInventorySystem.Controllers
 
                 db.tb_report.Add(tb_report);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Report successfully created!";
                 return RedirectToAction("Index");
             }
 
@@ -90,7 +91,7 @@ namespace MFAInventorySystem.Controllers
                 var r_sid = tb_report.r_sid;
                  
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -149,7 +150,7 @@ namespace MFAInventorySystem.Controllers
 
                     con.Close();
                 }
-
+                TempData["AlertMessage"] = "Report for vending machine successfully created!";
                 return RedirectToAction("Index");
             }
 
@@ -171,7 +172,7 @@ namespace MFAInventorySystem.Controllers
                 
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -228,7 +229,7 @@ namespace MFAInventorySystem.Controllers
 
                     con.Close();
                 }
-
+                TempData["AlertMessage"] = "Report for stock successfully created!";
                 return RedirectToAction("Index");
             }
 
@@ -265,6 +266,7 @@ namespace MFAInventorySystem.Controllers
             {
                 db.Entry(tb_report).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Report successfully modified!";
                 return RedirectToAction("Index");
             }
             ViewBag.r_vmID = new SelectList(db.tb_vendingmachine, "v_id", "v_location", tb_report.r_vmID);
@@ -295,6 +297,7 @@ namespace MFAInventorySystem.Controllers
             tb_report tb_report = db.tb_report.Find(id);
             db.tb_report.Remove(tb_report);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Report successfully deleted!";
             return RedirectToAction("Index");
         }
 

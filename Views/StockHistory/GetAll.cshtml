@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<MFAInventorySystem.Models.tb_stockhistory>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Stock Out List";
+    Layout = null;
 }
 
 
@@ -19,15 +19,11 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary" style="float:left;">Manage Stocks Out</h4>
-            @Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-secondary", style = "float:right;" })
+            <h4 class="m-0 font-weight-bold text-primary">Stocks Out</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <p>
-                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-                    
-                </p>
+
                 <table id="example1" class="table table-striped table-bordered table-hover table-sm" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -73,11 +69,6 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.tb_vendingmachine.v_location)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.sh_id }, new { @class = "btn btn-dark btnStyle" })
-                                    @Html.ActionLink("Details", "Details", new { id = item.sh_id }, new { @class = "btn btn-secondary btnStyle" })
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.sh_id }, new { @class = "btn btn-danger btnStyle" })
                                 </td>
                             </tr>
                         }

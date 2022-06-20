@@ -29,6 +29,7 @@ namespace MFAInventorySystem.Models
             public Nullable<double> sh_untungBersih { get; set; }
 
             [DisplayName("Date")]
+            [Required]
             [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
             public Nullable<System.DateTime> sh_date { get; set; }
 

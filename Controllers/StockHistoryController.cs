@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using MFAInventorySystem.Models;
+using Rotativa;
 
 namespace MFAInventorySystem.Controllers
 {
@@ -70,7 +71,7 @@ namespace MFAInventorySystem.Controllers
                 {
                     tb_stockhistory.sh_untungBersih = profitpercan * tb_stockhistory.sh_qtySold;
                     var v_profit = tb_stockhistory.sh_untungBersih;
-                    SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                    SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                     SqlDataAdapter cmd = new SqlDataAdapter();
                     cmd.InsertCommand = new SqlCommand("UPDATE tb_stock SET s_qty = @s_qty WHERE s_id=@s_id;");
                     cmd.InsertCommand.Connection = con;
@@ -104,9 +105,10 @@ namespace MFAInventorySystem.Controllers
 
                     }
 
-
+                    tb_stockhistory.sh_uid = @Session["uid"].ToString() ;
                     db.tb_stockhistory.Add(tb_stockhistory);
                     db.SaveChanges();
+                    TempData["AlertMessage"] = "Stock out record successfully added!";
                     ViewBag.Message = string.Format("Stock History Updated Successfully");
 
                     return RedirectToAction("Index");
@@ -179,7 +181,7 @@ namespace MFAInventorySystem.Controllers
                     tb_Stockhistory.sh_untungBersih = profitpercan * tb_Stockhistory.sh_qtySold;
                     var profitnow = tb_Stockhistory.sh_untungBersih;
                     v_profit = (v_profit - profitbefore) + tb_Stockhistory.sh_untungBersih;
-                    SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                    SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                     SqlDataAdapter cmd = new SqlDataAdapter();
                     //stock storage update
                     cmd.InsertCommand = new SqlCommand("UPDATE tb_stock SET s_qty = @s_qty WHERE s_id=@s_id;");
@@ -212,8 +214,10 @@ namespace MFAInventorySystem.Controllers
                         }
 
                     }
+
                     db.Entry(tb_Stockhistory).State = EntityState.Modified;
                     db.SaveChanges();
+                    TempData["AlertMessage"] = "Stock out record successfully modified!";
                     return RedirectToAction("Index");
                 }
                 else
@@ -258,7 +262,7 @@ namespace MFAInventorySystem.Controllers
             var s_qty = (from tb_stock in db.tb_stock where tb_stock.s_id == tb_Stockhistory.sh_sid select tb_stock.s_qty).Sum();
             var s_qty1 = (from tb_stockhistory in db.tb_stockhistory where tb_stockhistory.sh_id == tb_Stockhistory.sh_id select tb_stockhistory.sh_qtySold).Sum();
             s_qty = s_qty + s_qty1;
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-OG65LBU\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+            SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
             SqlDataAdapter cmd = new SqlDataAdapter();
             //stock storage update
 
@@ -296,9 +300,20 @@ namespace MFAInventorySystem.Controllers
             }
             db.tb_stockhistory.Remove(tb_Stockhistory);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Stock out record successfully deleted!";
             return RedirectToAction("Index");
         }
+        public ActionResult GetAll()
+        {
+            var so = db.tb_stockhistory.ToList();
+            return View(so);
+        }
 
+        public ActionResult PrintAll()
+        {
+            var q = new ActionAsPdf("GetAll");
+            return q;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
