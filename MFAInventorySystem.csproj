@@ -225,7 +225,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="App_Browsers\qt.browser" />
-    <Content Include="Content\AD_WBL_Project.pdf" />
+    <Content Include="Content\UserManualAdmin.pdf" />
+    <Content Include="Content\UserManualEmployee.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
