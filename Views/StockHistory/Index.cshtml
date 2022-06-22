@@ -21,13 +21,26 @@
         <div class="card-header py-3">
             <h4 class="m-0 font-weight-bold text-primary" style="float:left;">Manage Stocks Out</h4>
             @Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-secondary", style = "float:right;" })
+            
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <p>
                     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-                    
+                    @Html.ActionLink("View All", "Index", null, new { @class = "btn btn-primary" })
                 </p>
+                @using (Html.BeginForm("Index", "StockHistory", FormMethod.Get))
+                {
+                    <fieldset>
+                        <legend>Search criteria</legend>
+                        @Html.Label("startdate", "Start Date:")
+                        <input class="startdate" id="startdate" name="startdate" type="date" value="">
+                        @Html.Label("enddate", "End Date:")
+                        <input class="enddate" id="enddate" name="enddate" type="date" value="">
+                        <input type="submit" value="Apply" />
+                    </fieldset>
+                }
+
                 <table id="example1" class="table table-striped table-bordered table-hover table-sm" cellspacing="0" width="100%">
                     <thead>
                         <tr>
