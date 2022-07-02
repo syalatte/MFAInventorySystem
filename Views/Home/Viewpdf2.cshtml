@@ -21,7 +21,7 @@
 </head>
 <body>
 
-    @Html.ActionLink("Return To Home Page", "Index", "Home", new { @class = "btn btn-outline-dark" })
+    @Html.ActionLink("Return To Home Page", "Index2", "Home", new { @class = "btn btn-outline-dark" })
     <input type="button" id="btnPreview" value="Click to Review User Manual" onclick="LoadPdfFromUrl('@Url.Content("~/Content/UserManualEmployee.pdf")')" />
     <hr />
     <div id="pdf_container"></div>
