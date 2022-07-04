@@ -17,10 +17,30 @@ namespace MFAInventorySystem.Controllers
         private db_mfaEntities db = new db_mfaEntities();
 
         // GET: Report
-        public ActionResult Index()
+        public ActionResult Index(string startDate = null, string endDate = null)
         {
             var tb_report = db.tb_report.Include(t => t.tb_vendingmachine).Include(t => t.tb_stock);
-            return View(tb_report.ToList());
+            
+            if (startDate != null && endDate != null)
+            {
+                DateTime start = Convert.ToDateTime(startDate);
+                DateTime end = Convert.ToDateTime(endDate);
+
+                var data = (db.tb_report.Where(x => x.r_date >= start && x.r_date <= end).ToList());
+               
+                if (data != null)
+                {
+                    return View(data);
+                }
+                else
+                {
+                    return View(tb_report.ToList());
+                }
+            }
+            else
+            {
+                return View(tb_report.ToList());
+            }
         }
 
         // GET: Report/Details/5
@@ -91,7 +111,7 @@ namespace MFAInventorySystem.Controllers
                 var r_sid = tb_report.r_sid;
                  
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id
@@ -172,7 +192,7 @@ namespace MFAInventorySystem.Controllers
                 
                 var r_sid = tb_report.r_sid;
                 //data connection
-                SqlConnection con = new SqlConnection(@"Data Source=LATTE-LAPTOP\SQLEXPRESS01;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-NKBL84N\SQLEXPRESS;Initial Catalog=db_mfa;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework");
                 SqlDataAdapter cmd = new SqlDataAdapter();
 
                 //select total capital from table stock based on stock history by comparing vending machine id

@@ -19,13 +19,29 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h4 class="m-0 font-weight-bold text-primary" style="float:left;">Manage Report</h4>
-            @Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-dark", style = "float:right;" })
+            <!--@Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-dark", style = "float:right;" }) -->
         </div>
-        <div class="card-body">
+        <div>
+            <input type="button" value="Print" onclick="JavaScript:printPartOfPage('printArea');" />
+        </div>
+        <div class="card-body" id="printArea">
             <p>
                 @Html.ActionLink("Create Stock Report", "CreateStock", null, new { @class = "btn btn-primary" })
                 @Html.ActionLink("Create Vending Machine Report", "CreateVending", null, new { @class = "btn btn-primary" })
             </p>
+
+            @using (Html.BeginForm("Index", "Report", FormMethod.Get))
+            {
+                <fieldset>
+                    <legend>Search criteria</legend>
+                    @Html.Label("startdate", "Start Date:")
+                    <input class="startdate" id="startdate" name="startdate" type="date" value="">
+                    @Html.Label("enddate", "End Date:")
+                    <input class="enddate" id="enddate" name="enddate" type="date" value="">
+                    <input type="submit" value="Apply" />
+                </fieldset>
+            }
+
             <table id="example1" class="table table-striped table-bordered table-hover table-sm" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -89,3 +105,20 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+<!--
+function printPartOfPage(elementId) {
+var printContent = document.getElementById(elementId);
+var windowUrl = 'Repert Details';
+var uniqueName = new Date();
+var windowName = 'Print' + uniqueName.getTime();
+var printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+printWindow.document.write(printContent.innerHTML);
+printWindow.document.close();
+printWindow.focus();
+printWindow.print();
+printWindow.close();
+}
+// -->
+</script>
