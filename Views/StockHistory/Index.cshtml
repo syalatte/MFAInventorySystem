@@ -20,11 +20,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h4 class="m-0 font-weight-bold text-primary" style="float:left;">Manage Stocks Out</h4>
-        <!--@Html.ActionLink("Print", "PrintAll", null, new { @class = "btn btn-outline-secondary", style = "float:right;" }) -->
-
-    </div>
-    <div>
-        <input type="button" value="Print" onclick="JavaScript:printPartOfPage('printArea');" />
+        <input type="button" value="Print" style="float:right;" class="btn btn-outline-dark" onclick="JavaScript:printPartOfPage('printArea');" />
     </div>
     <div class="card-body">
         <div class="table-responsive" id="printArea">
