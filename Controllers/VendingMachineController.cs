@@ -100,17 +100,19 @@ namespace MFAInventorySystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( tb_vendingmachine tb_vendingmachine)
+        public ActionResult Edit( tb_vendingmachine tb_Vendingmachine)
         {
             if (ModelState.IsValid)
             {
-                
-                db.Entry(tb_vendingmachine).State = EntityState.Modified;
+                tb_Vendingmachine.v_cashInSlot = (from tb_vendingmachine in db.tb_vendingmachine where tb_vendingmachine.v_id == tb_Vendingmachine.v_id select tb_vendingmachine.v_cashInSlot).Sum();
+                tb_Vendingmachine.v_profit = (from tb_vendingmachine in db.tb_vendingmachine where tb_vendingmachine.v_id == tb_Vendingmachine.v_id select tb_vendingmachine.v_profit).Sum();
+
+                db.Entry(tb_Vendingmachine).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["AlertMessage"] = "Vending machine successfully modified!";
                 return RedirectToAction("Index");
             }
-            return View(tb_vendingmachine);
+            return View(tb_Vendingmachine);
         }
 
         // GET: VendingMachine/Delete/5
